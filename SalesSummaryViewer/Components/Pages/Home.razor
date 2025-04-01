@@ -1,0 +1,61 @@
+﻿@page "/"
+@rendermode InteractiveServer 
+
+@using SalesSummaryViewer.Components.Buttons
+
+<PageTitle>Virgin Media Sales Summary Viewer</PageTitle>
+
+<h1>Virgin Media Sales Summary Viewer</h1>
+<div class="container">
+    <div class="col-4">
+        <div class="d-flex flex-rwo column-gap-2 align-content-start">
+            <Button type="button" @onclick="ToggleSegmentSelected" style="@SegmentButtonStyle">Segment</Button>
+            <Button type="button" @onclick="ToggleCountrySelected" style="@SegmentCountryStyle">Country</Button>
+            <Button type="button" @onclick="ToggleProductSelected" style="@SegmentProductStyle">Product</Button>
+            <Button type="button" @onclick="ToggleDiscountSelected" style="@SegmentDiscountStyle">Discount</Button>
+        </div>
+    </div>
+    <div class="col-8">
+        @if (SalesSummariesReport.Count == 0 && !IsNotYetImplemented)
+        {
+            <div class="text-center notice">
+                <p>Press buttons to define the report criteria, and then press the "Generate Report" button.</p>
+            </div>
+        }
+        else if((SalesSummariesReport.Count == 0) && (IsNotYetImplemented == true))
+        {
+            <div class="text-center notice">
+                <p>Currently, only up to two criteria can be selected for the report generation. Please reduce the number of selected criteria to two, and then press the <i>"Generate Report"</i> button</p>
+            </div>
+        }
+        else
+        {
+            <div>
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                        <th>Category</th>
+                        <th>Total Units Sold</th>
+                        <th>Total Manufacturing Price</th>
+                        <th>Total Sales Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var reportItem in SalesSummariesReport)
+                        {
+                            <tr>
+                                <td>@reportItem.Category</td>
+                                <td>@reportItem.TotalUnitsSold</td>
+                                <td>@reportItem.TotalManufacturingPrice</td>
+                                <td>@reportItem.TotalSalesPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <button type="button" @onclick="GenerateSalesSummary">Generate Sales Summary</button>
+    </div>
+</div>
