@@ -42,7 +42,7 @@
                         @foreach(var reportItem in SalesSummariesReport)
                         {
                             <tr>
-                                <td>@(IsDoubleSelection() ? ((MarkupString)reportItem.Category) : reportItem.Category)</td>
+                                <td>@((MarkupString)reportItem.Category)</td>
                                 <td>@reportItem.TotalUnitsSold</td>
                                 <td>@reportItem.TotalManufacturingPrice</td>
                                 <td>@reportItem.TotalSalesPrice</td>
