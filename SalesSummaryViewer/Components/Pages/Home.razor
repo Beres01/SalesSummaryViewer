@@ -1,14 +1,12 @@
 ﻿@page "/"
 @rendermode InteractiveServer 
 
-@using SalesSummaryViewer.Components.Buttons
-
 <PageTitle>Virgin Media Sales Summary Viewer</PageTitle>
 
 <h1>Virgin Media Sales Summary Viewer</h1>
 <div class="container">
     <div class="col-4">
-        <div class="d-flex flex-rwo column-gap-2 align-content-start">
+        <div class="d-flex flex-rwo column-gap-2 align-content-start .buttons-container mb-4">
             <Button type="button" @onclick="ToggleSegmentSelected" style="@SegmentButtonStyle">Segment</Button>
             <Button type="button" @onclick="ToggleCountrySelected" style="@SegmentCountryStyle">Country</Button>
             <Button type="button" @onclick="ToggleProductSelected" style="@SegmentProductStyle">Product</Button>
@@ -44,7 +42,7 @@
                         @foreach(var reportItem in SalesSummariesReport)
                         {
                             <tr>
-                                <td>@reportItem.Category</td>
+                                <td>@(IsDoubleSelection() ? ((MarkupString)reportItem.Category) : reportItem.Category)</td>
                                 <td>@reportItem.TotalUnitsSold</td>
                                 <td>@reportItem.TotalManufacturingPrice</td>
                                 <td>@reportItem.TotalSalesPrice</td>

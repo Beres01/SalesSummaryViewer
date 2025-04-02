@@ -129,7 +129,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by s.Segment into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = g.Key,
+                                                Category = (MarkupString)$"<span>{g.Key}</span>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -141,7 +141,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by s.Country into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = g.Key,
+                                                Category = (MarkupString)$"<span>{g.Key}</span>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -153,7 +153,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by s.Country into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = g.Key,
+                                                Category = (MarkupString)$"<span>{g.Key}</span>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -165,7 +165,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by s.Discount into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = g.Key,
+                                                Category = (MarkupString)$"<span>{g.Key}</span>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -186,7 +186,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Segment, s.Country } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Segment}, {g.Key.Country}",
+                                                Category = (MarkupString)$"<dl><dt>Segment</dt><dd>{g.Key.Segment}</dd><dt>Country</dt><dd>{g.Key.Country}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -198,7 +198,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Segment, s.Product } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Segment}, {g.Key.Product}",
+                                                Category = (MarkupString)$"<dl><dt>Segment</dt><dd>{g.Key.Segment}</dd><dt>Product</dt><dd>{g.Key.Product}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -210,7 +210,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Segment, s.Discount } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Segment}, {g.Key.Discount}",
+                                                Category = (MarkupString)$"<dl><dt>Segment</dt><dd>{g.Key.Segment}</dd><dt>Discount</dt><dd>{g.Key.Discount}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -222,7 +222,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Country, s.Product } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Country}, {g.Key.Product}",
+                                                Category = (MarkupString)$"<dl><dt>Country</dt><dd>{g.Key.Country}</dd><dt>Product</dt><dd>{g.Key.Product}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -234,7 +234,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Country, s.Discount } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Country}, {g.Key.Discount}",
+                                                Category = (MarkupString)$"<dl><dt>Country</dt><dd>{g.Key.Country}</dd><dt>Discount</dt><dd>{g.Key.Discount}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
@@ -246,7 +246,7 @@ namespace SalesSummaryViewer.Components.Pages
                                             group s by new { s.Product, s.Discount } into g
                                             select new SalesSummaryReportDto()
                                             {
-                                                Category = $"{g.Key.Product}, {g.Key.Discount}",
+                                                Category = (MarkupString)$"<dl><dt>Product</dt><dd>{g.Key.Product}</dd><dt>Discount</dt><dd>{g.Key.Discount}</dd></dl>",
                                                 TotalManufacturingPrice = g.Sum(c => c.ManufacturingPrice),
                                                 TotalUnitsSold = g.Sum(c => c.UnitsSold),
                                                 TotalSalesPrice = g.Sum(c => c.SalePrice)
